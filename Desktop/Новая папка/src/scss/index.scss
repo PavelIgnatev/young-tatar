@@ -1,0 +1,47 @@
+@import './_variables.scss';
+@import './_fonts.scss';
+@import './_normalize.scss';
+@import './swipe.scss';
+@import './_media.scss';
+@import '~@feizheng/react-draggable-tree/dist/style.scss';
+
+body {
+  font-size: 16px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: #000;
+  pointer-events: none;
+}
+​ html {
+  scroll-behavior: smooth;
+}
+
+.Toastify__toast-icon {
+  display: none;
+}
+
+.Toastify__close-button--light {
+  color: var(--color--orange);
+  opacity: 1;
+}
+
+.Toastify__toast-container {
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh + 190px);
+}

@@ -1,0 +1,25 @@
+.DataSwipeComponent {
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  min-height: 400px;
+  padding: 25px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 60px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 50px;
+}
+
+.children {
+  font-size: 40px;
+  font-weight: 500;
+}
