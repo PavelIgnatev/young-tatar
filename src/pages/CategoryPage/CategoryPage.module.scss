@@ -18,3 +18,9 @@
   color: #000000;
   margin-bottom: 30px;
 }
+
+@media (max-width: 1060px){
+  .wrapper{
+    justify-content: center;
+  }
+}

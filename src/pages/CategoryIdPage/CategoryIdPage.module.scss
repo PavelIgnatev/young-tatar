@@ -22,6 +22,12 @@
   transform: translateY(-50%);
 }
 
+@media (max-width: 777px) {
+  .vector {
+    display: none;
+  }
+}
+
 .rotate {
   top: calc(35% - 32px);
   left: 10% !important;

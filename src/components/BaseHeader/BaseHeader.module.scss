@@ -46,3 +46,9 @@
     background-color: rgb(214, 186, 44);
   }
 }
+
+@media (max-width: 392px) {
+  .button {
+    min-width: 120px;
+  }
+}

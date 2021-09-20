@@ -38,16 +38,6 @@
   }
 }
 
-@media (max-width: 1060px){
-  .CategoryPage_wrapper__3kNZd{
-    justify-content: center;
-  }
-}
-@media (max-width: 777px) {
-  .CategoryIdPage_vector__39vF5 {
-    display: none;
-  }
-}
 @media (max-width: 652px) {
   .basic-swipeable-list__item,
   .basic-swipeable-list__item-content-left,
@@ -58,27 +48,3 @@
   }
 }
 
-@media (max-width: 532px) {
-  .BaseCategory_wrap__11nBM {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 410px) {
-  .BaseCategory_wrappers__1WQre {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .BaseCategory_source__2IyVb {
-    padding-left: 15px;
-    padding-bottom: 10px;
-  }
-}
-
-@media (max-width: 392px) {
-  .BaseHeader_button__1-Jbi {
-    min-width: 120px;
-  }
-}
