@@ -35,17 +35,14 @@ export const CategoryIdPage = () => {
     return {
       content: (
         <div className={classNames(classes.wrapper, classes.wrapper_red)} onClick={() => false}>
-          <BasicSwipeContent label={value ?? 'не определено'} position="left" />
+          <BasicSwipeContent label={value} position="left" />
           <div className={classes.not}>Похоже, вам есть что подучить.</div>
           <button disabled={count === 0} className={classes.button} />
         </div>
       ),
       actionAnimation: ActionAnimations.REMOVE,
       action: async () => {
-        document.getElementById('root').classList.add('overlay');
-        await new Promise((res) => setTimeout(res, 3000));
-        document.getElementById('root').classList.remove('overlay');
-        setI(Math.round(getRandomArbitrary(0, data[ids].length - 1)));
+        document.body.classList.add('overlay');
         localStorage.setItem(
           `success${ids}`,
           Number(
@@ -54,6 +51,9 @@ export const CategoryIdPage = () => {
               : Number(localStorage.getItem(`success${ids}`))) ?? 0) - 0.5,
           ),
         );
+        await new Promise((res) => setTimeout(res, 2500));
+        document.body.classList.remove('overlay');
+        setI(Math.round(getRandomArbitrary(0, data[ids].length - 1)));
         setCount(3);
       },
     };
@@ -72,10 +72,7 @@ export const CategoryIdPage = () => {
       ),
       actionAnimation: ActionAnimations.REMOVE,
       action: async () => {
-        document.getElementById('root').classList.add('overlay');
-        await new Promise((res) => setTimeout(res, 3000));
-        document.getElementById('root').classList.remove('overlay');
-        setI(Math.round(getRandomArbitrary(0, data[ids].length - 1)));
+        document.body.classList.add('overlay');
         localStorage.setItem(
           `progress${ids}`,
           Number((Number(localStorage.getItem(`progress${ids}`)) ?? 0) + 1),
@@ -84,59 +81,63 @@ export const CategoryIdPage = () => {
           `success${ids}`,
           Number((Number(localStorage.getItem(`success${ids}`)) ?? 0) + 1),
         );
+        await new Promise((res) => setTimeout(res, 2500));
+        document.body.classList.remove('overlay');
+        setI(Math.round(getRandomArbitrary(0, data[ids].length - 1)));
         setCount(3);
       },
     };
   };
 
   return (
-      <div className={classes.CategoryIdPage}>
-        <div className="animations-swipeable-list__container">
-          <SwipeableList threshold={threshold}>
-            {({ className, scrollStartThreshold, swipeStartThreshold, threshold }) => (
-              <TransitionGroup className={className} enter exit>
-                {data[ids].map(({ id, text }) => (
-                  <CSSTransition classNames="my-node" key={id} timeout={0}>
-                    <SwipeableListItem
-                      key={id}
-                      scrollStartThreshold={scrollStartThreshold}
-                      swipeLeft={swipeLeftOptions(`${text} - ${data[ids][id]['translate']}`)}
-                      swipeRight={swipeRightOptions(`${text} - ${data[ids][id]['translate']}`)}
-                      swipeStartThreshold={swipeStartThreshold}
-                      threshold={threshold}
-                    >
-                      {Number(id) === Number(i) && (
-                        <>
-                          <div className={classes.wrapper}>
+    <div className={classes.CategoryIdPage}>
+      <div className="animations-swipeable-list__container">
+        <SwipeableList threshold={threshold}>
+          {({ className, scrollStartThreshold, swipeStartThreshold, threshold }) => (
+            <TransitionGroup className={className} enter exit>
+              {data[ids].map(({ id, text }) => (
+                <CSSTransition classNames="my-node" key={id} timeout={0}>
+                  <SwipeableListItem
+                    key={id}
+                    scrollStartThreshold={scrollStartThreshold}
+                    swipeLeft={swipeLeftOptions(`${text} - ${data[ids][id]['translate']}`)}
+                    swipeRight={swipeRightOptions(`${text} - ${data[ids][id]['translate']}`)}
+                    swipeStartThreshold={swipeStartThreshold}
+                    threshold={threshold}
+                  >
+                    {Number(id) === Number(i) && (
+                      <>
+                        <div className={classes.wrapper}>
+                          <div className={classes.wrappers}>
                             <BasicListItem label={text} />
                             <Vector className={classes.vector} />
                             <Vector className={classNames(classes.rotate, classes.vector)} />
-                            <div className={classes.not}>
-                              {declOfNum(count, ['подсказка', 'подсказки', 'подсказок'])} доступно
-                            </div>
-                            <button
-                              disabled={count === 0}
-                              onClick={() => {
-                                setCount(count - 1);
-                                document.documentElement.scrollIntoView(true);
-                                GoodNotification(data[ids][id]['offer']);
-                              }}
-                              className={classes.button}
-                            >
-                              Получить подсказку
-                            </button>
                           </div>
-
-                          <ToastContainer hideProgressBar />
-                        </>
-                      )}
-                    </SwipeableListItem>
-                  </CSSTransition>
-                ))}
-              </TransitionGroup>
-            )}
-          </SwipeableList>
-        </div>
+                          <div className={classes.not}>
+                            {declOfNum(count, ['подсказка', 'подсказки', 'подсказок'])} доступно
+                          </div>
+                          <button
+                            disabled={count === 0}
+                            onClick={() => {
+                              setCount(count - 1);
+                              document.documentElement.scrollIntoView(true);
+                              GoodNotification(data[ids][id]['offer']);
+                            }}
+                            className={classes.button}
+                          >
+                            Получить подсказку
+                          </button>
+                        </div>
+                        <ToastContainer hideProgressBar />
+                      </>
+                    )}
+                  </SwipeableListItem>
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
+          )}
+        </SwipeableList>
       </div>
+    </div>
   );
 };

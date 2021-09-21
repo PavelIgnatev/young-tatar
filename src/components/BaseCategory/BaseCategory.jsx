@@ -49,9 +49,9 @@ export const BaseCategory = ({
             Успешность выполнения: <span style={{ color: color }}>{success}%</span>
           </div>
           <button className={classes.button} style={{ color: color }}>
-            {progress === '0'
-              ? 'Приступить к карточке'
-              : progress === '100'
+            {progress === 0
+              ? 'Приступить к решению карточки'
+              : progress === 100
               ? 'Решить карточку повторно'
               : 'Продолжить решать карточку'}
           </button>

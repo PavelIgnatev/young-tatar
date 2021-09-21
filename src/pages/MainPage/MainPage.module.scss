@@ -1,11 +1,11 @@
 .MainPage {
-  padding-top: 60px;
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 .title {
-  margin-top: 80px;
   margin-bottom: 25px;
   font-size: 38px;
   font-weight: 800;
@@ -64,7 +64,6 @@
   margin: 0 auto;
   border-radius: 8px;
   width: 250px;
-  margin-bottom: 100px;
   background-color: #ffc400;
 }
 
@@ -79,6 +78,10 @@
 }
 
 @media (max-width: 768px) {
+  .MainPage{
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
   .card {
     width: 70% !important;
   }

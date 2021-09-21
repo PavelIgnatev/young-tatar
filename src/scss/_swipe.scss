@@ -17,6 +17,7 @@
   }
 }
 
+
 .animations-swipeable-list__container {
   width: 100%;
   text-align: center;
@@ -27,13 +28,13 @@
 .animations__switcher {
   align-self: auto;
 }
-
-.animations__switcher-row {
-  padding-top: 8px;
-}
-
 .my-node-exit {
   opacity: 1;
+}
+
+.swipeable-list{
+  max-width: 100%;
+  min-width: 100%;
 }
 
 .my-node-exit-active {
@@ -49,7 +50,6 @@
 
 .my-node-enter-active {
   opacity: 1;
-  max-height: 1000px;
   transition: max-height 4000ms, opacity 1500ms;
 }
 
@@ -61,18 +61,16 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 4px 8px;
 }
 
 .basic-swipeable-list__item-content-right {
   background-color: green;
   box-sizing: border-box;
   color: white;
-  height: 100%;
+  height: calc(100vh - 60px);
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 4px 8px;
   justify-content: flex-end;
 }
 
@@ -81,7 +79,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 4px 8px;
   user-select: none;
   cursor: pointer;
 }
@@ -99,4 +96,7 @@
 .swipeable-list-item__content-right, .swipeable-list-item__content-left {
   pointer-events: none !important;
   user-select: none !important;
+}
+.swipeable-list-item{
+  max-height: 100% !important;
 }

@@ -5,6 +5,13 @@ import { useParams } from 'react-router';
 import classNames from 'classnames';
 import { ErrorNotification, SuccessNotification } from '../../components/NotificationsService';
 import { ToastContainer } from 'react-toastify';
+import { polyfill } from 'mobile-drag-drop';
+
+import { scrollBehaviourDragImageTranslateOverride } from 'mobile-drag-drop/scroll-behaviour';
+
+polyfill({
+  dragImageTranslateOverride: scrollBehaviourDragImageTranslateOverride,
+});
 
 export const OffersPage = () => {
   useEffect(() => {
@@ -29,6 +36,7 @@ export const OffersPage = () => {
   }
 
   function dropHandler(e, card) {
+    console.log(e, card);
     setCarslist(
       cardList.map((c) => {
         if (c.id === card.id && card.text === '____') {
@@ -52,13 +60,13 @@ export const OffersPage = () => {
 
   async function ov() {
     let r = '';
-    cardList.sort(sortCard).forEach( (card) => {
+    cardList.sort(sortCard).forEach((card) => {
       if (card.text !== '____') r += card.text;
     });
     if (r === offers[page][id]['result'] && carrentCard) {
       SuccessNotification('Правильно!');
-      await new Promise((res)=>setTimeout(res, 2500))
-      setCarslist(offers[page][id]['words'])
+      await new Promise((res) => setTimeout(res, 2500));
+      setCarslist(offers[page][id]['words']);
       localStorage.setItem(`offers${page}`, (localStorage.getItem(`offers${page}`) ?? 0) + 1);
     } else ErrorNotification('Попробуйте снова!');
   }
@@ -68,39 +76,45 @@ export const OffersPage = () => {
       <section className={classes.OffersPage}>
         <div className={classes.title}>Перенесите слово туда, где оно уместно</div>
         <div className={classes.cardWrapper}>
-          {cardList
-            .sort(sortCard)
-            .slice(0, cardList.length - 1)
-            .map((card) => (
-              <span
-                onDragStart={(e) => dragStartHandler(e, card)}
-                onDragOver={(e) => dragOverHandler(e)}
-                onDrop={(e) => dropHandler(e, card)}
-                draggable={startWord.text === card.text ? true : false}
-                key={card.id}
-                className={classNames(classes.card, {
-                  [classes.actives]: startWord.text === card.text,
-                })}
-              >
-                {card.text}
-              </span>
-            ))}
+          <div className={classes.carder}>
+            {cardList
+              .sort(sortCard)
+              .slice(0, cardList.length - 1)
+              .map((card) => (
+                <div
+                  onDragStart={(e) => dragStartHandler(e, card)}
+                  onDragOver={(e) => dragOverHandler(e)}
+                  onDrop={(e) => dropHandler(e, card)}
+                  draggable={startWord.text === card.text ? true : false}
+                  key={card.id}
+                  className={classNames(classes.card, {
+                    [classes.actives]: startWord.text === card.text,
+                  })}
+                >
+                  {card.text}
+                </div>
+              ))}
+          </div>
         </div>
-        {cardList.sort(sortCard)[cardList.length - 1].text === startWord.text && (
-          <span
-            onDragStart={(e) => dragStartHandler(e, cardList.sort(sortCard)[cardList.length - 1])}
-            onDragOver={(e) => dragOverHandler(e)}
-            onDrop={(e) => dropHandler(e, cardList.sort(sortCard)[cardList.length - 1])}
-            draggable={true}
-            key={cardList.sort(sortCard)[cardList.length - 1].id}
-            className={classNames(classes.card, classes.pt, {
-              [classes.active]:
-                cardList.sort(sortCard)[cardList.length - 1].text === startWord.text,
-            })}
-          >
-            {cardList.sort(sortCard)[cardList.length - 1].text}
-          </span>
-        )}
+        <div
+          onDragStart={(e) => dragStartHandler(e, cardList.sort(sortCard)[cardList.length - 1])}
+          onDragOver={(e) => dragOverHandler(e)}
+          onDrop={(e) => dropHandler(e, cardList.sort(sortCard)[cardList.length - 1])}
+          draggable={true}
+          key={cardList.sort(sortCard)[cardList.length - 1].id}
+          className={classNames(classes.card, classes.pt, {
+            [classes.active]: cardList.sort(sortCard)[cardList.length - 1].text === startWord.text,
+          })}
+          style={{
+            opacity:
+              cardList.sort(sortCard)[cardList.length - 1].text === startWord.text ? '1' : '0',
+            pointerEvents:
+              cardList.sort(sortCard)[cardList.length - 1].text === startWord.text ? '' : 'none',
+          }}
+        >
+          {cardList.sort(sortCard)[cardList.length - 1].text}
+        </div>
+
         <button onClick={ov} className={classes.button}>
           Проверить
         </button>

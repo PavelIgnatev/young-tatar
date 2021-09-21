@@ -1,7 +1,15 @@
 import React from 'react';
 import { BaseCategory } from '../../components/BaseCategory/BaseCategory';
 import classes from './CategoryPage.module.scss';
-import { Design, Group1, Group2, Group3, Rectangle1, Rectangle2, Rectangle3 } from '../../components/Icon';
+import {
+  Design,
+  Group1,
+  Group2,
+  Group3,
+  Rectangle1,
+  Rectangle2,
+  Rectangle3,
+} from '../../components/Icon';
 import data from '../../data/data.json';
 
 export const CategoryPage = () => {
@@ -15,11 +23,11 @@ export const CategoryPage = () => {
           title="Обращения"
           subtitle="Как отвечать на ежедневные разговоры и не терятся, когда с вами знакомятся"
           progress={Math.min(
-            ((localStorage.getItem('progress1') / data[1].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('progress1') / data[1].length) * 100).toFixed(0)),
             100,
           )}
           success={Math.min(
-            ((localStorage.getItem('success1') / data[1].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('success1') / data[1].length) * 100).toFixed(0)),
             100,
           )}
           word={data[1].length}
@@ -33,11 +41,11 @@ export const CategoryPage = () => {
           title="Цвета радуги"
           subtitle="“Каждый охотник желает знать где сидит фазан” или цвета на татарском языке"
           progress={Math.min(
-            ((localStorage.getItem('progress2') / data[2].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('progress2') / data[2].length) * 100).toFixed(0)),
             100,
           )}
           success={Math.min(
-            ((localStorage.getItem('success2') / data[2].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('success2') / data[2].length) * 100).toFixed(0)),
             100,
           )}
           word={data[2].length}
@@ -52,11 +60,11 @@ export const CategoryPage = () => {
           subtitle="Как описать характер человека и сделать
         ему комплимент?"
           progress={Math.min(
-            ((localStorage.getItem('progress3') / data[3].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('progress3') / data[3].length) * 100).toFixed(0)),
             100,
           )}
           success={Math.min(
-            ((localStorage.getItem('success3') / data[3].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('success3') / data[3].length) * 100).toFixed(0)),
             100,
           )}
           background="#FFDDD6"
@@ -70,11 +78,11 @@ export const CategoryPage = () => {
           title="В путешествии"
           subtitle="Путешествуйте с комфортом, используя базовые зания татрского языка"
           progress={Math.min(
-            ((localStorage.getItem('progress4') / data[4].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('progress4') / data[4].length) * 100).toFixed(0)),
             100,
           )}
           success={Math.min(
-            ((localStorage.getItem('success4') / data[4].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('success4') / data[4].length) * 100).toFixed(0)),
             100,
           )}
           word={data[4].length}
@@ -88,11 +96,11 @@ export const CategoryPage = () => {
           title="Свойства"
           subtitle="Как описывать событие и явление, предмет и человека?"
           progress={Math.min(
-            ((localStorage.getItem('progress5') / data[5].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('progress5') / data[5].length) * 100).toFixed(0)),
             100,
           )}
           success={Math.min(
-            ((localStorage.getItem('success5') / data[5].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('success5') / data[5].length) * 100).toFixed(0)),
             100,
           )}
           time="0"
@@ -107,11 +115,11 @@ export const CategoryPage = () => {
           subtitle="Как правильно извинится, согласится или
         отказаться?"
           progress={Math.min(
-            ((localStorage.getItem('progress6') / data[6].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('progress6') / data[6].length) * 100).toFixed(0)),
             100,
           )}
           success={Math.min(
-            ((localStorage.getItem('success6') / data[6].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('success6') / data[6].length) * 100).toFixed(0)),
             100,
           )}
           word={data[6].length}
@@ -129,13 +137,10 @@ export const CategoryPage = () => {
           subtitle="Проверьте свои навыки использования слов
           в разговре"
           progress={Math.min(
-            ((localStorage.getItem('offers1') / data[6].length) * 100).toFixed(0),
+            Number(((localStorage.getItem('offers1') / 1) * 100).toFixed(0)),
             100,
           )}
-          success={Math.min(
-            ((localStorage.getItem('offers1') / data[6].length) * 100).toFixed(0),
-            100,
-          )}
+          success={Math.min(Number(((localStorage.getItem('offers1') / 1) * 100).toFixed(0)), 100)}
           offers={1}
           time="0"
           background="#E7E7E7"
