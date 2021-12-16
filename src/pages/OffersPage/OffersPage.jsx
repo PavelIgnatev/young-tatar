@@ -5,13 +5,6 @@ import { useParams } from 'react-router';
 import classNames from 'classnames';
 import { ErrorNotification, SuccessNotification } from '../../components/NotificationsService';
 import { ToastContainer } from 'react-toastify';
-import { polyfill } from 'mobile-drag-drop';
-
-import { scrollBehaviourDragImageTranslateOverride } from 'mobile-drag-drop/scroll-behaviour';
-
-polyfill({
-  dragImageTranslateOverride: scrollBehaviourDragImageTranslateOverride,
-});
 
 export const OffersPage = () => {
   useEffect(() => {
